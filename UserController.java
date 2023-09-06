@@ -14,13 +14,13 @@ public Class UserController {
 
   @PostMapping("/registrations")
   public ResponseEntity<?> createUser(@RequestBody User user) {
-    User savedUser = UserService.createUser(user);
+    UserEntity savedUser = UserService.createUser(user);
     return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
   }
 
   @GetMapping("/users/{id}")
   public ResponseEntity<?> getUserById(@PathVariable("id") UUID id) {
-    Optional<User> optionalUser;
+    Optional<UserEntity> optionalUser;
     try {
       optionalUser = userRepository.findById(id);
     } catch (Exception e) {
